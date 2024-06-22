@@ -1,19 +1,15 @@
 package com.example.service;
 
-import com.example.entity.price;
-import com.example.entity.product;
 import com.example.repository.PriceRepository;
 import com.example.repository.ProductRepository;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-@Service
 @Slf4j
+@Service
 public class FundService {
     private static final String API_URL = "https://www.cathaybk.com.tw/cathaybk/service/newwealth/fund/chartservice.asmx/GetFundNavChart";
 
