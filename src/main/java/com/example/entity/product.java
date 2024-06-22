@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class product {
     @jakarta.persistence.Id
-    private Long productId;
-    private String productName;
-    private String productShortName;
-    private boolean isGrouped;
+    private Long dataId;
+    private String name;
+    private String shortName;
+    private boolean dataGrouping;
 
 }

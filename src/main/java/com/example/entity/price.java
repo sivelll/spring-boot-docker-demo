@@ -11,7 +11,7 @@ import java.util.Date;
 public class price {
     @jakarta.persistence.Id
     private Date date;
-    private String productId;
+    private String dataId;
     private BigDecimal price;
 
 }
