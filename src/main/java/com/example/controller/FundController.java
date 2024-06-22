@@ -30,28 +30,18 @@ public class FundController {
     private RestTemplate restTemplate;
 
     @PostMapping("/fetch-fund-data")
-    public ResponseEntity<String> fetchFundData2(@RequestBody fundRq param) throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public ResponseEntity<String> fetchFundData(@RequestBody fundRq param) throws Exception {
         String apiUrl = "https://www.cathaybk.com.tw/cathaybk/service/newwealth/fund/chartservice.asmx/GetFundNavChart";
+        ObjectMapper objectMapper = new ObjectMapper();
         String jsonInputString = objectMapper.writeValueAsString(param);
         log.info(jsonInputString);
         // 发送POST请求
-        ResponseEntity<String> jsonResponse = sendPostRequest(apiUrl, jsonInputString);
+        ResponseEntity<String> jsonResponse = fundService.sendPostRequest(apiUrl, jsonInputString);
 
         // 输出服务器响应结果
-        System.out.println(jsonResponse);
+        log.info(jsonResponse.toString());
         return jsonResponse;
 
     }
 
-    public static ResponseEntity<String> sendPostRequest(String url, String requestBody) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
-
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
-
-        return response;
-    }
 }

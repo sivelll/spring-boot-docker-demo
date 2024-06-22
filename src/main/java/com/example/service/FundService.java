@@ -19,6 +19,16 @@ public class FundService {
     @Autowired
     private PriceRepository priceRepository;
 
+    public static ResponseEntity<String> sendPostRequest(String url, String requestBody) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        return restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+    }
+
     public void fetchAndStoreFundData() throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
