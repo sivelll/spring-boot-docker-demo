@@ -45,6 +45,7 @@ public class FundController {
         // 输出服务器响应结果
         log.info(jsonResponse.getBody());
         log.info(fundRs.toString());
+        fundService.saveProduct(fundRs.getData());
 
 //        return jsonResponse;
         return fundRs;

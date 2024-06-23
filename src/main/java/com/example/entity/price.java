@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Data;
 
@@ -10,8 +11,11 @@ import java.util.Date;
 @Data
 public class price {
     @jakarta.persistence.Id
+    @Column(name = "date")
     private Date date;
+    @Column(name = "data_id")
     private String dataId;
+    @Column(name = "price")
     private BigDecimal price;
 
 }
