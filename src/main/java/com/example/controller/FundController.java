@@ -1,9 +1,6 @@
 package com.example.controller;
 
-import com.example.dto.fundRq;
-import com.example.dto.fundRs;
-import com.example.dto.priceRq;
-import com.example.dto.priceRs;
+import com.example.dto.*;
 import com.example.service.FundService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
@@ -11,9 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Api
@@ -44,9 +39,26 @@ public class FundController {
 
     }
 
-    @PostMapping("/get_price")
-    public priceRs fetchFundData(@RequestBody priceRq param) throws Exception {
-        return fundService.getPrice(param);
+    @GetMapping("/get_price")
+    public priceRs get_price(@RequestParam String date) throws Exception {
+        log.info(date);
+        return fundService.getPrice(date);
+    }
+
+    @PostMapping("/update_price")
+    public priceRs update_price(@RequestBody updatePriceRq param) throws Exception {
+        return fundService.update_price(param);
+    }
+
+    @PostMapping("/add_price")
+    public priceRs add_price(@RequestBody priceRq param) throws Exception {
+        return fundService.add_price(param);
+    }
+
+    @DeleteMapping("/delete_price")
+    public priceRs delete_price(@RequestParam String date) throws Exception {
+        log.info(date);
+        return fundService.delete_price(date);
     }
 
 }

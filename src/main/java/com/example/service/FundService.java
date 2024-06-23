@@ -1,8 +1,6 @@
 package com.example.service;
 
-import com.example.dto.fundRs;
-import com.example.dto.priceRq;
-import com.example.dto.priceRs;
+import com.example.dto.*;
 import com.example.entity.price;
 import com.example.entity.product;
 import com.example.repository.PriceRepository;
@@ -21,7 +19,6 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @Slf4j
@@ -96,15 +93,39 @@ public class FundService {
         log.info(itemData.toString());
     }
 
-    public priceRs getPrice(priceRq param) {
+    public priceRs getPrice(String date) {
+        priceRs priceRs = new priceRs();
+        log.info(date);
+        price price = priceRepository.findByDate(date);
+        log.info(price.toString());
+        priceRs.setDate(price.getDate());
+        priceRs.setPrice(price.getPrice());
+        return priceRs;
+    }
+
+    public priceRs update_price(updatePriceRq param) {
         priceRs priceRs = new priceRs();
         log.info(param.getDate());
-        Optional<price> price = priceRepository.findById(param.getDate());
+        price price = priceRepository.findByDate(param.getDate());
         log.info(price.toString());
-        if (price.isPresent()) {
-            priceRs.setDate(price.get().getDate());
-            priceRs.setPrice(price.get().getPrice());
-        }
+        priceRs.setDate(param.getDate());
+        priceRs.setPrice(param.getPrice());
+        price.setPrice(param.getPrice());
+        priceRepository.save(price);
         return priceRs;
+    }
+
+    public priceRs add_price(priceRq param) {
+        priceRs priceRs = new priceRs();
+        price price = new price();
+        BeanUtils.copyProperties(param, price);
+        priceRepository.save(price);
+        BeanUtils.copyProperties(price, priceRs);
+        return priceRs;
+    }
+
+    public priceRs delete_price(String date) {
+        priceRepository.deleteById(date);
+        return null;
     }
 }

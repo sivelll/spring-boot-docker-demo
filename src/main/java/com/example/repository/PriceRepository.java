@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PriceRepository extends JpaRepository<price, String> {
+
+    <Price> Price findByDate(String date);
+
 }
