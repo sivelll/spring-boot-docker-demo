@@ -17,10 +17,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import static org.hibernate.internal.util.BytesHelper.asLong;
 
 @Slf4j
 @Service
@@ -94,27 +92,4 @@ public class FundService {
         log.info(itemData.toString());
     }
 
-//    public void savePriceFromList(List<Object> rowData) {
-//        price price = new price();
-//        price.setDate((String) rowData.get(0));
-//        price.setDataId((String) rowData.get(1));
-//        price.setPrice(BigDecimal.valueOf((Double) rowData.get(2)));
-//
-//        // 保存实体到数据库
-//        priceRepository.save(price);
-//    }
-
-//    public void savePricesFromList(List<Object> rowDataList) {
-//        for (Object rowData : rowDataList) {
-//            price price = new price();
-//            List<Object> rowDataItems = (List<Object>) rowData;
-//
-//            price.setDate((String) rowDataItems.get(0)); // 设置日期
-//            price.setDataId((String) rowDataItems.get(1)); // 设置数据 ID
-//            price.setPrice(BigDecimal.valueOf((Double) rowDataItems.get(2))); // 设置价格
-//
-//            // 保存实体到数据库
-//            priceRepository.save(price);
-//        }
-//    }
 }

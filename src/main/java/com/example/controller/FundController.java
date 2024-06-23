@@ -6,21 +6,13 @@ import com.example.service.FundService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 @RestController
 @Api
@@ -28,8 +20,6 @@ import java.net.URL;
 public class FundController {
     @Autowired
     private FundService fundService;
-
-    private RestTemplate restTemplate;
 
     @PostMapping("/fetch-fund-data")
 //    public ResponseEntity<String> fetchFundData(@RequestBody fundRq param) throws Exception {
