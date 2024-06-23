@@ -46,6 +46,7 @@ public class FundController {
         log.info(jsonResponse.getBody());
         log.info(fundRs.toString());
         fundService.saveProduct(fundRs.getData());
+        fundService.savePrice(fundRs.getData());
 
 //        return jsonResponse;
         return fundRs;

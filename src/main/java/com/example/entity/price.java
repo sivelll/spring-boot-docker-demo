@@ -12,7 +12,7 @@ import java.util.Date;
 public class price {
     @jakarta.persistence.Id
     @Column(name = "date")
-    private Date date;
+    private String date;
     @Column(name = "data_id")
     private String dataId;
     @Column(name = "price")
