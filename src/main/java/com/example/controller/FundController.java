@@ -31,12 +31,12 @@ public class FundController {
 
     @PostMapping("/fetch-fund-data")
     public ResponseEntity<String> fetchFundData(@RequestBody fundRq param) throws Exception {
-        String apiUrl = "https://www.cathaybk.com.tw/cathaybk/service/newwealth/fund/chartservice.asmx/GetFundNavChart";
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonInputString = objectMapper.writeValueAsString(param);
         log.info(jsonInputString);
         // 发送POST请求
-        ResponseEntity<String> jsonResponse = fundService.sendPostRequest(apiUrl, jsonInputString);
+        String targetUrl = "https://www.cathaybk.com.tw/cathaybk/service/newwealth/fund/chartservice.asmx/GetFundNavChart";
+        ResponseEntity<String> jsonResponse = fundService.sendPostRequest(targetUrl, jsonInputString);
 
         // 输出服务器响应结果
         log.info(jsonResponse.toString());
