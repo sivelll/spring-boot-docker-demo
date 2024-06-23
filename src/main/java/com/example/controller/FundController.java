@@ -2,6 +2,8 @@ package com.example.controller;
 
 import com.example.dto.fundRq;
 import com.example.dto.fundRs;
+import com.example.dto.priceRq;
+import com.example.dto.priceRs;
 import com.example.service.FundService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
@@ -12,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 @RestController
 @Api
@@ -41,6 +42,11 @@ public class FundController {
 //        return jsonResponse;
         return fundRs;
 
+    }
+
+    @PostMapping("/get_price")
+    public priceRs fetchFundData(@RequestBody priceRq param) throws Exception {
+        return fundService.getPrice(param);
     }
 
 }

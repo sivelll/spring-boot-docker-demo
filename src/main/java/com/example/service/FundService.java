@@ -1,11 +1,14 @@
 package com.example.service;
 
 import com.example.dto.fundRs;
+import com.example.dto.priceRq;
+import com.example.dto.priceRs;
 import com.example.entity.price;
 import com.example.entity.product;
 import com.example.repository.PriceRepository;
 import com.example.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Slf4j
@@ -58,7 +62,7 @@ public class FundService {
             productItem.setDataId(dataId);
             productItem.setName(name);
             productItem.setShortName(shortName);
-            productItem.setDataGrouping(dataGrouping? "Y" : "N");
+            productItem.setDataGrouping(dataGrouping ? "Y" : "N");
             log.info(productItem.toString());
             // 保存到数据库
             productRepository.save(productItem);
@@ -92,4 +96,15 @@ public class FundService {
         log.info(itemData.toString());
     }
 
+    public priceRs getPrice(priceRq param) {
+        priceRs priceRs = new priceRs();
+        log.info(param.getDate());
+        Optional<price> price = priceRepository.findById(param.getDate());
+        log.info(price.toString());
+        if (price.isPresent()) {
+            priceRs.setDate(price.get().getDate());
+            priceRs.setPrice(price.get().getPrice());
+        }
+        return priceRs;
+    }
 }
