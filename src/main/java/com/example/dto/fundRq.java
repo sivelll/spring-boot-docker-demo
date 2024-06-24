@@ -7,6 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
+@Schema(description = "fundRq")
 public class fundRq {
 
     @JsonProperty("req")
@@ -14,14 +15,14 @@ public class fundRq {
 
     public static class Req {
         @JsonProperty("keys")
-//        @Schema(description = "List of keys", example = "[\"10480016\"]")
+        @Schema(description = "List of keys", example = "[\"10480016\"]", requiredMode = Schema.RequiredMode.REQUIRED)
         private List<String> Keys;
         @JsonProperty("From")
-//        @Schema(description = "From day", example = "2023/03/10")
-        private String From = "2023/03/10";
+        @Schema(description = "From day", example = "2023/03/10", requiredMode = Schema.RequiredMode.REQUIRED)
+        private String From;
         @JsonProperty("To")
-//        @Schema(description = "To day", example = "2024/03/10")
-        private String To = "2024/03/10";
+        @Schema(description = "To day", example = "2024/03/10", requiredMode = Schema.RequiredMode.REQUIRED)
+        private String To;
 
     }
 }

@@ -5,6 +5,7 @@ import com.example.service.ClosingPriceCalculator;
 import com.example.service.PercentageChangeCalculator;
 import com.example.service.PreviousClosingPriceCalculator;
 import com.example.service.PriceChangeCalculator;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,22 +28,22 @@ public class PriceController {
     private PercentageChangeCalculator percentageChangeCalculator;
 
     @GetMapping("/price_change")
-    public CalculationResult getPriceChange(@RequestParam String startDate, @RequestParam String endDate) throws Exception {
+    public CalculationResult getPriceChange(@Parameter(description = "startDate", example = "2023/03/13") @RequestParam String startDate, @Parameter(description = "endDate", example = "2023/03/14") @RequestParam String endDate) throws Exception {
         return priceChangeCalculator.calculate(startDate, endDate);
     }
 
     @GetMapping("/closing_price")
-    public CalculationResult getClosingPrice(@RequestParam String startDate, @RequestParam String endDate) throws Exception {
+    public CalculationResult getClosingPrice(@Parameter(description = "startDate", example = "2023/03/13") @RequestParam String startDate, @Parameter(description = "endDate", example = "2023/03/14") @RequestParam String endDate) throws Exception {
         return closingPriceCalculator.calculate(startDate, endDate);
     }
 
     @GetMapping("/previous_closing_price")
-    public CalculationResult getPreviousClosingPrice(@RequestParam String startDate, @RequestParam String endDate) throws Exception {
+    public CalculationResult getPreviousClosingPrice(@Parameter(description = "startDate", example = "2023/03/13") @RequestParam String startDate, @Parameter(description = "endDate", example = "2023/03/14") @RequestParam String endDate) throws Exception {
         return previousClosingPriceCalculator.calculate(startDate, endDate);
     }
 
     @GetMapping("/percentage_change")
-    public CalculationResult getPercentageChange(@RequestParam String startDate, @RequestParam String endDate) throws Exception {
+    public CalculationResult getPercentageChange(@Parameter(description = "startDate", example = "2023/03/13") @RequestParam String startDate, @Parameter(description = "endDate", example = "2023/03/14") @RequestParam String endDate) throws Exception {
         return percentageChangeCalculator.calculate(startDate, endDate);
     }
 }
