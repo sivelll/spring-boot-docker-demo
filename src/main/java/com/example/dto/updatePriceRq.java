@@ -7,8 +7,8 @@ import java.math.BigDecimal;
 
 @Data
 public class updatePriceRq {
-    @JsonProperty("date")
-    private String date;
+//    @JsonProperty("date")
+//    private String date;
 
     @JsonProperty("price")
     private BigDecimal price;

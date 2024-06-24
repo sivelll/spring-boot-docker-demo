@@ -103,12 +103,12 @@ public class FundService {
         return priceRs;
     }
 
-    public priceRs update_price(updatePriceRq param) {
+    public priceRs update_price(String date,updatePriceRq param) {
         priceRs priceRs = new priceRs();
-        log.info(param.getDate());
-        price price = priceRepository.findByDate(param.getDate());
+        log.info(date);
+        price price = priceRepository.findByDate(date);
         log.info(price.toString());
-        priceRs.setDate(param.getDate());
+        priceRs.setDate(date);
         priceRs.setPrice(param.getPrice());
         price.setPrice(param.getPrice());
         priceRepository.save(price);

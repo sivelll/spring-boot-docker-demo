@@ -45,9 +45,9 @@ public class FundController {
         return fundService.getPrice(date);
     }
 
-    @PostMapping("/update_price")
-    public priceRs update_price(@RequestBody updatePriceRq param) throws Exception {
-        return fundService.update_price(param);
+    @PutMapping("/update_price")
+    public priceRs update_price(@RequestParam String date,@RequestBody updatePriceRq param) throws Exception {
+        return fundService.update_price(date,param);
     }
 
     @PostMapping("/add_price")
