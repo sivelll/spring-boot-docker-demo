@@ -67,7 +67,8 @@ public class FundService {
     }
 
     public void savePrice(List<fundRs.dataItem> data) {
-        List<Object> itemData = new ArrayList<>();
+//        List<Object> itemData = new ArrayList<>();
+        List<price> all_price = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         for (fundRs.dataItem item : data) {
             for (List<Object> sublist : item.getData()) {
@@ -79,18 +80,20 @@ public class FundService {
                 // 使用 LocalDateTime 和 DateTimeFormatter 格式化为字符串
                 LocalDateTime dateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
                 String formattedDate = dateTime.format(formatter);
-                itemData.add(formattedDate);
-                itemData.add(item.getId());
-                itemData.add(sublist.get(1));
+//                itemData.add(formattedDate);
+//                itemData.add(item.getId());
+//                itemData.add(sublist.get(1));
 
                 // save price
                 price.setDate(formattedDate);
                 price.setDataId(item.getId());
                 price.setPrice(BigDecimal.valueOf((Double) sublist.get(1)));
-                priceRepository.save(price);
+                all_price.add(price);
+//                priceRepository.save(price);
             }
         }
-        log.info(itemData.toString());
+        log.info(all_price.toString());
+        priceRepository.saveAll(all_price);
     }
 
     public priceRs getPrice(String date) {
