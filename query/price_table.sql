@@ -1,5 +1,5 @@
 CREATE TABLE demo.price (
-    date DATE NOT NULL PRIMARY KEY COMMENT '日期',
+    date VARCHAR(100) NOT NULL PRIMARY KEY COMMENT '日期',
     data_id VARCHAR(100) NOT NULL COMMENT '商品 ID',
     price DECIMAL(10, 2) NOT NULL COMMENT '價格',
     CONSTRAINT fk_product
