@@ -6,6 +6,7 @@ import com.example.service.PercentageChangeCalculator;
 import com.example.service.PreviousClosingPriceCalculator;
 import com.example.service.PriceChangeCalculator;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/prices")
+@Tag(name="Calculator price controller")
 public class PriceController {
     @Autowired
     private PriceChangeCalculator priceChangeCalculator;

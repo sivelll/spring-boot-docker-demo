@@ -20,9 +20,9 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("API Documentation")
+                        .title("Spring boot 3 use Java17 with Docker API Documentation")
                         .version("1.0")
-                        .description("API documentation for Spring Boot application"));
+                        .description("API documentation for Spring Boot 3 application"));
     }
 
     @Bean
@@ -34,11 +34,4 @@ public class SwaggerConfig {
                 .build();
     }
 
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("API Documentation")
-                .description("API Documentation for Spring Boot Application")
-                .version("1.0.0")
-                .build();
-    }
 }
